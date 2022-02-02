@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>CVbot</title>
+	<script src="/static/joy.js"></script>
+	<style>
+	html{
+		width: 100%;
+		height: 100%;
+	}
+
+	body {
+		position:absolute; top:0; bottom:0; right:0; left:0;
+		margin: 0;
+		background-color: #000000;
+	}
+	
+	#videoContainer {
+		background-color: #00000000;
+	}
+	
+	#video {
+		width: 100vw;
+		height: 100vh;
+		display: block;
+		margin: auto;
+	}
+	
+	#logo {
+		width: 7%;
+		height: auto;
+		position: absolute;
+		padding: 0px;
+		top: 3%;
+		left: 1%;
+	}
+	
+	#joyDiv {
+		width: max(30vw, 30vh);
+		height: max(30vw, 30vh);
+		max-width: 350px;
+		max-height: 350px;
+		position: absolute;
+		bottom: 0%;
+		right: 0%;
+	}
+	
+	</style>
+</head>
+<body>
+	<div id="videoContainer"><img id="video" src="{{ url_for('video_feed') }}"></div>
+	<a href="https://www.youtube.com/channel/UCHRTaqr8KSCfyo2_CLH-yfg"><img id="logo" src="/static/logo.png"></a>
+	<div id="joyDiv"></div>
+	<script type="text/javascript">
+		var joyParam = {"title": "joystick", 
+						"autoReturnToCenter": true, 
+						"internalFillColor": "#FF0000", 
+						"externalStrokeColor": "#800000", 
+						"externalLineWidth": "5"};
+		var joy = new JoyStick('joyDiv', joyParam);
+		
+		function control(x, y){
+			var xhttp = new XMLHttpRequest();
+			xhttp.open("GET", "control?x=" + x +"&y="+y, true); 
+			xhttp.send();
+		}
+		
+		setInterval(function(){control(joy.GetX(), joy.GetY());}, 50);
+		
+	</script>
+</body>
+</html>
