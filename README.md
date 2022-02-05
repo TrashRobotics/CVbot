@@ -44,12 +44,12 @@ sudo apt upgrade
 ```
 Загружаем питоновый менеджер пакетов и вспомогательные пакеты
 ```shell
-sudo apt install python3-dev python3-pip
+sudo apt install python3-dev python3-pip python3-numpy
 ```
-Загружаем еще немного зависимостей (установка numpy может занимать несколько часов)
+Загружаем еще немного зависимостей
 ```shell
 pip3 install --upgrade pip setuptools wheel
-pip3 install flask pyserial numpy 
+pip3 install flask pyserial 
 ```
 Загружаем openCV
 ```shell
