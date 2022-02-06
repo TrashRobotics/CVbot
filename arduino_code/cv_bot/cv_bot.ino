@@ -15,7 +15,7 @@ int16_t speedB = 0;
 
 void setup()
 {
-  Serial.begin(115200);
+  Serial.begin(9600);
   pinMode(IN1_PIN, OUTPUT);    
   pinMode(IN2_PIN, OUTPUT);    
   pinMode(IN3_PIN, OUTPUT);    
@@ -41,7 +41,7 @@ void loop()
 }
 
 void moveA(int16_t speed){
-  speed = -speed;
+  //speed = -speed;
   if(speed >= 0){
     analogWrite(IN1_PIN, LOW);  
     analogWrite(IN2_PIN, abs(speed));
