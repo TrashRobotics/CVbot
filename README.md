@@ -63,7 +63,7 @@ git clone https://github.com/TrashRobotics/CVbot
 ```
 и запускаем приложение
 ```shell
-cd python_app
+cd CVbot/python_app
 python3 app.py -i (ip-адресс orange pi) -p (порт) -s (последовательный порт)
 ```
 Открываем браузер и вводим в нем 

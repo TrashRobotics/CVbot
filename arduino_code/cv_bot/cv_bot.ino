@@ -5,7 +5,7 @@
 #define IN4_PIN   10  //  
 #define LED_PIN   13  
 
-// json буфер для пакетов от ПК
+// json буфер для пакетов от orange pi
 StaticJsonDocument<200> jsondoc;
 
 // глобальные переменные скорости
@@ -25,8 +25,8 @@ void setup()
 
 void loop()
 {
-  DeserializationError err = deserializeJson(jsondoc, Serial);  // получаем пакеты по uart через HC-06
-  if (err == DeserializationError::Ok)    // если пакет принят
+  DeserializationError err = deserializeJson(jsondoc, Serial);  // получаем сообщение от orange pi через uart
+  if (err == DeserializationError::Ok)    // если cообщение принято
   {
     speedA = (float)jsondoc["speedA"] * 2.55;  // приходит диапазон [-100; 100]
     speedB = (float)jsondoc["speedB"] * 2.55;  // расширяем до [-255; 255]
