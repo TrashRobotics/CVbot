@@ -1,5 +1,5 @@
 <h1 align="center">
-  <a href=""><img src="https://github.com/TrashRobotics/CVbot/blob/main/img/robot.jpeg" alt="Робот для работы с openCV" width="800"></a>
+  <a href="https://youtu.be/SoLUaoV-Cu4"><img src="https://github.com/TrashRobotics/CVbot/blob/main/img/robot.jpeg" alt="Робот для работы с openCV" width="800"></a>
   <br>
 	Простой робот для работы с openCV
   <br>
