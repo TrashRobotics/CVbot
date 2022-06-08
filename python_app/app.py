@@ -18,7 +18,7 @@ def getFramesGenerator():
         time.sleep(0.01)    # ограничение fps (если видео тупит, можно убрать)
         success, frame = camera.read()  # Получаем фрейм с камеры
         if success:
-            frame = cv2.resize(frame, (640, 360), interpolation=cv2.INTER_AREA)  # уменьшаем разрешение кадров (если видео тупит, можно уменьшить еще больше)
+            frame = cv2.resize(frame, (320, 240), interpolation=cv2.INTER_AREA)  # уменьшаем разрешение кадров (если видео тупит, можно уменьшить еще больше)
             # frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)   # перевод изображения в градации серого
             # _, frame = cv2.threshold(frame, 127, 255, cv2.THRESH_BINARY)  # бинаризуем изображение
             _, buffer = cv2.imencode('.jpg', frame)
@@ -42,7 +42,7 @@ def index():
 def control():
     """ Пришел запрос на управления роботом """
     global controlX, controlY
-    controlX, controlY = int(request.args.get('x')), int(request.args.get('y'))
+    controlX, controlY = float(request.args.get('x')) / 100.0, float(request.args.get('y')) / 100.0
     return '', 200, {'Content-Type': 'text/plain'}
 
 
