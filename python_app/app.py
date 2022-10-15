@@ -69,28 +69,28 @@ if __name__ == '__main__':
                         default='/dev/ttyUSB0', help="Serial port")
     args = parser.parse_args()
 
-    serialPort = serial.Serial(args.serial, 9600)   # 打開uart
+    # serialPort = serial.Serial(args.serial, 9600)   # 打開uart
 
-    def sender():
-        """ uart循環發送數據包功能 """
-        global controlX, controlY
-        while True:
-            speedA = maxAbsSpeed * (controlY + controlX)    # 轉換機器人的速度
-            speedB = maxAbsSpeed * (controlY - controlX)    # 取決於操縱桿的位置
+    # def sender():
+    #     """ uart循環發送數據包功能 """
+    #     global controlX, controlY
+    #     while True:
+    #         speedA = maxAbsSpeed * (controlY + controlX)    # 轉換機器人的速度
+    #         speedB = maxAbsSpeed * (controlY - controlX)    # 取決於操縱桿的位置
 
-            # 功能類似於arduino中的約束
-            speedA = max(-maxAbsSpeed, min(speedA, maxAbsSpeed))
-            # 功能類似於arduino中的約束
-            speedB = max(-maxAbsSpeed, min(speedB, maxAbsSpeed))
+    #         # 功能類似於arduino中的約束
+    #         speedA = max(-maxAbsSpeed, min(speedA, maxAbsSpeed))
+    #         # 功能類似於arduino中的約束
+    #         speedB = max(-maxAbsSpeed, min(speedB, maxAbsSpeed))
 
-            msg["speedA"], msg["speedB"] = speedScale * \
-                speedA, speedScale * speedB     # 降低速度和包裝
+    #         msg["speedA"], msg["speedB"] = speedScale * \
+    #             speedA, speedScale * speedB     # 降低速度和包裝
 
-            serialPort.write(json.dumps(msg, ensure_ascii=False).encode(
-                "utf8"))  # 將包作為 json 文件發送
-            time.sleep(1 / sendFreq)
+    #         serialPort.write(json.dumps(msg, ensure_ascii=False).encode(
+    #             "utf8"))  # 將包作為 json 文件發送
+    #         time.sleep(1 / sendFreq)
 
-    # 使用守護進程啟動一個線程以通過 uart 發送數據包
-    threading.Thread(target=sender, daemon=True).start()
+    # # 使用守護進程啟動一個線程以通過 uart 發送數據包
+    # threading.Thread(target=sender, daemon=True).start()
 
     app.run(debug=False, host=args.ip, port=args.port)   # 運行燒瓶應用程序
